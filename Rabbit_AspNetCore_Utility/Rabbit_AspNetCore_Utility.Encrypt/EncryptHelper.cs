@@ -84,8 +84,5 @@ namespace Rabbit_AspNetCore_Utility.Encrypt
             }
         }
         #endregion
-
-
-
     }
 }
