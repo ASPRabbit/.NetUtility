@@ -3,7 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rabbit_AspNetCore_Utility.Encrypt", "Rabbit_AspNetCore_Utility.Encrypt\Rabbit_AspNetCore_Utility.Encrypt.csproj", "{EB68C763-9B41-4F2F-BE48-4A13C980FE7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rabbit_AspNetCore_Utility.Test", "Rabbit_AspNetCore_Utility.Test\Rabbit_AspNetCore_Utility.Test.csproj", "{20CB155E-29F6-4B43-8F8B-E58F63F79B4B}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB68C763-9B41-4F2F-BE48-4A13C980FE7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB68C763-9B41-4F2F-BE48-4A13C980FE7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB68C763-9B41-4F2F-BE48-4A13C980FE7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB68C763-9B41-4F2F-BE48-4A13C980FE7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20CB155E-29F6-4B43-8F8B-E58F63F79B4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20CB155E-29F6-4B43-8F8B-E58F63F79B4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20CB155E-29F6-4B43-8F8B-E58F63F79B4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20CB155E-29F6-4B43-8F8B-E58F63F79B4B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
