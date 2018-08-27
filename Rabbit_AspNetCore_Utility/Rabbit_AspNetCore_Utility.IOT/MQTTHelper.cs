@@ -8,13 +8,15 @@ namespace Rabbit_AspNetCore_Utility.IOT
 {
     public static class MQTTHelper
     {
-        private static IMqttServer mqttServer;
+
         public static void CreateMQTTServer()
         {
+            IMqttServer mqttServer;
             mqttServer = new MqttFactory().CreateMqttServer();
-            var option = new MqttServerOptionsBuilder()
+            IMqttServerOptions option = new MqttServerOptionsBuilder()
                 //客户端验证
-                .WithConnectionValidator(c => {
+                .WithConnectionValidator(c =>
+                {
                     if (c.ClientId.Length < 10)
                     {
                         c.ReturnCode = MqttConnectReturnCode.ConnectionRefusedIdentifierRejected;
@@ -33,14 +35,16 @@ namespace Rabbit_AspNetCore_Utility.IOT
                     c.ReturnCode = MqttConnectReturnCode.ConnectionAccepted;
                 })
                 //拦截应用消息
-                .WithApplicationMessageInterceptor((c)=> {
+                .WithApplicationMessageInterceptor((c) =>
+                {
                     if (MqttTopicFilterComparer.IsMatch(c.ApplicationMessage.Topic, "/myTopic/WithTimes"))
                     {
                         c.ApplicationMessage.Payload = Encoding.UTF8.GetBytes(DateTime.Now.ToString("O"));
                     }
                 })
                 //拦截订阅
-                .WithSubscriptionInterceptor((c) => {
+                .WithSubscriptionInterceptor((c) =>
+                {
                     if (c.TopicFilter.Topic.StartsWith("admin/foo/bar") && c.ClientId != "theAdmin")
                     {
                         c.AcceptSubscription = false;
@@ -53,10 +57,11 @@ namespace Rabbit_AspNetCore_Utility.IOT
                 })
                 .WithDefaultEndpointPort(1884)
                 .WithDefaultEndpointBoundIPAddress(new System.Net.IPAddress(Encoding.Default.GetBytes("127.0.0.1")))
-                .WithDefaultCommunicationTimeout(new TimeSpan(0,10,0))
+                .WithDefaultCommunicationTimeout(new TimeSpan(0, 10, 0))
                 .WithConnectionBacklog(100).Build();
 
-            option.ClientMessageQueueInterceptor = c => {
+            option.ClientMessageQueueInterceptor = c =>
+            {
                 Console.WriteLine(c.ReceiverClientId + "," + c.ApplicationMessage.Topic + "," + c.ApplicationMessage.Payload + "," + c.SenderClientId);
             };
             mqttServer.StartAsync(option);
@@ -66,5 +71,7 @@ namespace Rabbit_AspNetCore_Utility.IOT
         {
             mqttServer.PublishAsync("topic", "payload");
         }
+
+
     }
 }
